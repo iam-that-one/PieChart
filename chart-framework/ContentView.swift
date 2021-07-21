@@ -8,11 +8,11 @@ import Charts
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.presentationMode) var presentationMode
+
     @State var itemLable = ""
     @State var itemValue = 0.0
     @State var items = Item.allItems
-    @State var showOiechart = false
+    @State var showPieChart = false
     @State private var pieChartEntries: [PieChartDataEntry] = []
     @State private var category: Item.Category = .university
         var body: some View {
@@ -20,7 +20,7 @@ struct ContentView: View {
             VStack {
                 List{
                     Button(action:{
-                        showOiechart.toggle()
+                        showPieChart.toggle()
                     }){
                         HStack{
                           Image(systemName: "chevron.left")
@@ -79,7 +79,7 @@ struct ContentView: View {
                
                 }.listStyle(InsetGroupedListStyle())
             }.ignoresSafeArea()
-            .fullScreenCover(isPresented: $showOiechart, content: {
+            .fullScreenCover(isPresented: $showPieChart, content: {
                 NavigationView{
                 VStack{
                     PieChart(entries: Item.entriesForWines(items,
@@ -100,7 +100,7 @@ struct ContentView: View {
                     }
                     ToolbarItem(placement:.navigationBarTrailing){
                         Button(action:{
-                            showOiechart = false
+                            showPieChart = false
                         }){
                             Image(systemName: "xmark.circle.fill")
                         }
