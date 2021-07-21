@@ -8,6 +8,7 @@ import Charts
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State var itemLable = ""
     @State var itemValue = 0.0
     @State var items = Item.allItems
@@ -45,7 +46,7 @@ struct ContentView: View {
                             Text("عدد الطلاب حسب الجامعة")
                         }
                         ){
-                        ForEach(Item.allItems){item in
+                        ForEach(items){item in
                             if item.category == .university{
                             HStack{
                             
@@ -63,7 +64,7 @@ struct ContentView: View {
                             Text("عدد الطلاب حسب الكلية")
                         }
                         ){
-                        ForEach(Item.allItems){item in
+                        ForEach(items){item in
                             if item.category == .college{
                             HStack{
                             
@@ -78,10 +79,10 @@ struct ContentView: View {
                
                 }.listStyle(InsetGroupedListStyle())
             }.ignoresSafeArea()
-            .sheet(isPresented: $showOiechart, content: {
+            .fullScreenCover(isPresented: $showOiechart, content: {
                 NavigationView{
                 VStack{
-                    PieChart(entries: Item.entriesForWines(Item.allItems,
+                    PieChart(entries: Item.entriesForWines(items,
                                                            category: category),
                              category: $category)
                         .frame(height: 400)
@@ -97,7 +98,15 @@ struct ContentView: View {
                         Text("عدد الطلاب(عشوائي)")
                             .font(.largeTitle)
                     }
+                    ToolbarItem(placement:.navigationBarTrailing){
+                        Button(action:{
+                            showOiechart = false
+                        }){
+                            Image(systemName: "xmark.circle.fill")
+                        }
+                    }
                 }
+            
             }
             })
             .toolbar{
@@ -106,7 +115,15 @@ struct ContentView: View {
                         .font(.largeTitle)
                 }
             }
-        
+            .toolbar{
+                ToolbarItem(placement:.navigationBarTrailing){
+                    Button(action:{
+                        items.append(Item(category: .university, value: 50000, label: "dqed"))
+                    }){
+                        Image(systemName: "plus.circle.fill")
+                    }
+                }
+            }
         }
         }
 }

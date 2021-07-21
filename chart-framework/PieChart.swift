@@ -21,6 +21,7 @@ struct PieChart: UIViewRepresentable {
     func updateUIView(_ uiView: PieChartView, context: Context) {
         let dataSet = PieChartDataSet(entries: entries)
         dataSet.colors = ChartColorTemplates.colorful()
+       // dataSet.colors = [.red,.brown,.yellow,.orange,.green]
         let pieChartData = PieChartData(dataSet: dataSet)
         uiView.data = pieChartData
         configureChart(uiView)
@@ -52,7 +53,7 @@ struct PieChart: UIViewRepresentable {
     
     func configureChart( _ pieChart: PieChartView) {
         
-        pieChart.rotationEnabled = false
+        pieChart.rotationEnabled = true
         pieChart.animate(xAxisDuration: 0.5, easingOption: .easeInOutCirc)
         pieChart.drawEntryLabelsEnabled = false
         pieChart.highlightValue(x: -1, dataSetIndex: 0, callDelegate: false)
