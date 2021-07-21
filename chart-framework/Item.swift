@@ -21,9 +21,9 @@ struct Item: Identifiable {
     var id : String{
         label
     }
-    static func entriesForWines(_ items: [Item], category: Category) -> [PieChartDataEntry]{
-        let requestedWines = items.filter{$0.category == category}
-        return requestedWines.map{PieChartDataEntry(value: $0.value, label: $0.label)}
+    static func entriesForItems(_ items: [Item], category: Category) -> [PieChartDataEntry]{
+        let requestedItems = items.filter{$0.category == category}
+        return requestedItems.map{PieChartDataEntry(value: $0.value, label: $0.label)}
     }
     static var allItems:[Item] {
         [

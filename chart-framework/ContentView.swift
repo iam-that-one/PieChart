@@ -82,7 +82,7 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $showPieChart, content: {
                 NavigationView{
                 VStack{
-                    PieChart(entries: Item.entriesForWines(items,
+                    PieChart(entries: Item.entriesForItems(items,
                                                            category: category),
                              category: $category)
                         .frame(height: 400)

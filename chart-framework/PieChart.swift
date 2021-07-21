@@ -100,7 +100,7 @@ struct PieChart: UIViewRepresentable {
 
 struct PieChart_Previews : PreviewProvider {
     static var previews: some View {
-        PieChart(entries: Item.entriesForWines(Item.allItems, category: .university),
+        PieChart(entries: Item.entriesForItems(Item.allItems, category: .university),
                  category: .constant(.university))
             .frame(height: 400)
             .padding()
