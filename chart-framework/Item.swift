@@ -12,10 +12,8 @@ import Foundation
 struct Item: Identifiable {
     enum Category: String {
         case university, college
-        
     }
     var category: Category
-
     var value:Double
     var label:String
     var id : String{
